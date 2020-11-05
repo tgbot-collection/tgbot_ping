@@ -205,12 +205,14 @@ func getContainerInfo(containerName, displayName string) string {
 
 func GetRuntime(containerName, displayName, parseMode string) string {
 	//container_name: str, display_name: str = "This bot", parse_mode: str = "markdown"
-
-	info := getContainerInfo(containerName, displayName)
-
 	if parseMode == "" {
 		parseMode = "markdown"
 	}
+	if displayName == "" {
+		displayName = "This bot"
+	}
+	info := getContainerInfo(containerName, displayName)
+
 	switch parseMode {
 	case "html":
 		info = strings.Replace(info, "😊", "<pre>", -1)
