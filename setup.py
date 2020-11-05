@@ -9,13 +9,13 @@ __author__ = "Benny <benny.think@gmail.com>"
 from distutils.core import setup
 
 # Package meta-data.
-NAME = 'tgbot_ping'
+NAME = 'tgbot-ping'
 DESCRIPTION = 'A package to detect telegram bot status in docker.'
 URL = 'https://github.com/tgbot-collection/status'
 EMAIL = 'benny.think@gmail.com'
 AUTHOR = 'BennyThink'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 # What packages are required for this module to be executed?
 REQUIRED = ["requests"]
