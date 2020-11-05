@@ -20,20 +20,20 @@ type containerStart struct {
 
 // https://github.com/moby/moby/blob/c1d090fcc88fa3bc5b804aead91ec60e30207538/api/types/stats.go
 
-type CPUUsage struct {
+type cpuUsage struct {
 	TotalUsage        uint64   `json:"total_usage"`
 	PercpuUsage       []uint64 `json:"percpu_usage,omitempty"`
 	UsageInKernelmode uint64   `json:"usage_in_kernelmode"`
 	UsageInUsermode   uint64   `json:"usage_in_usermode"`
 }
 
-type CPUStats struct {
-	CPUUsage    CPUUsage `json:"cpu_usage"`
+type cpuStats struct {
+	CPUUsage    cpuUsage `json:"cpu_usage"`
 	SystemUsage uint64   `json:"system_cpu_usage,omitempty"`
 	OnlineCPUs  uint32   `json:"online_cpus,omitempty"`
 }
 
-type MemoryStats struct {
+type memoryStats struct {
 	Usage             uint64            `json:"usage,omitempty"`
 	MaxUsage          uint64            `json:"max_usage,omitempty"`
 	Stats             map[string]uint64 `json:"stats,omitempty"`
@@ -44,25 +44,25 @@ type MemoryStats struct {
 	PrivateWorkingSet uint64            `json:"privateworkingset,omitempty"`
 }
 
-type BlkioStatEntry struct {
+type blkioStatEntry struct {
 	Major uint64 `json:"major"`
 	Minor uint64 `json:"minor"`
 	Op    string `json:"op"`
 	Value uint64 `json:"value"`
 }
 
-type BlkioStats struct {
-	IoServiceBytesRecursive []BlkioStatEntry `json:"io_service_bytes_recursive"`
-	IoServicedRecursive     []BlkioStatEntry `json:"io_serviced_recursive"`
-	IoQueuedRecursive       []BlkioStatEntry `json:"io_queue_recursive"`
-	IoServiceTimeRecursive  []BlkioStatEntry `json:"io_service_time_recursive"`
-	IoWaitTimeRecursive     []BlkioStatEntry `json:"io_wait_time_recursive"`
-	IoMergedRecursive       []BlkioStatEntry `json:"io_merged_recursive"`
-	IoTimeRecursive         []BlkioStatEntry `json:"io_time_recursive"`
-	SectorsRecursive        []BlkioStatEntry `json:"sectors_recursive"`
+type blkioStats struct {
+	IoServiceBytesRecursive []blkioStatEntry `json:"io_service_bytes_recursive"`
+	IoServicedRecursive     []blkioStatEntry `json:"io_serviced_recursive"`
+	IoQueuedRecursive       []blkioStatEntry `json:"io_queue_recursive"`
+	IoServiceTimeRecursive  []blkioStatEntry `json:"io_service_time_recursive"`
+	IoWaitTimeRecursive     []blkioStatEntry `json:"io_wait_time_recursive"`
+	IoMergedRecursive       []blkioStatEntry `json:"io_merged_recursive"`
+	IoTimeRecursive         []blkioStatEntry `json:"io_time_recursive"`
+	SectorsRecursive        []blkioStatEntry `json:"sectors_recursive"`
 }
 
-type NetworkStats struct {
+type networkStats struct {
 	RxBytes    uint64 `json:"rx_bytes"`
 	RxPackets  uint64 `json:"rx_packets"`
 	RxErrors   uint64 `json:"rx_errors"`
@@ -75,26 +75,26 @@ type NetworkStats struct {
 	InstanceID string `json:"instance_id,omitempty"`
 }
 
-type Stats struct {
+type stats struct {
 	Read    time.Time `json:"read"`
 	PreRead time.Time `json:"preread"`
 
-	BlkioStats  BlkioStats  `json:"blkio_stats,omitempty"`
-	CPUStats    CPUStats    `json:"cpu_stats,omitempty"`
-	PreCPUStats CPUStats    `json:"precpu_stats,omitempty"` // "Pre"="Previous"
-	MemoryStats MemoryStats `json:"memory_stats,omitempty"`
+	BlkioStats  blkioStats  `json:"blkio_stats,omitempty"`
+	CPUStats    cpuStats    `json:"cpu_stats,omitempty"`
+	PreCPUStats cpuStats    `json:"precpu_stats,omitempty"` // "Pre"="Previous"
+	MemoryStats memoryStats `json:"memory_stats,omitempty"`
 }
 
-type StatsJSON struct {
-	Stats
+type statsJSON struct {
+	stats
 	Name string `json:"name,omitempty"`
 	ID   string `json:"id,omitempty"`
 
 	// Networks request version >=1.21
-	Networks map[string]NetworkStats `json:"networks,omitempty"`
+	Networks map[string]networkStats `json:"networks,omitempty"`
 }
 
-func calculateCPUPercentUnix(previousCPU, previousSystem uint64, v StatsJSON) float64 {
+func calculateCPUPercentUnix(previousCPU, previousSystem uint64, v statsJSON) float64 {
 	var (
 		cpuPercent = 0.0
 		// calculate the change for the cpu usage of the container in between readings
@@ -109,7 +109,7 @@ func calculateCPUPercentUnix(previousCPU, previousSystem uint64, v StatsJSON) fl
 	return cpuPercent
 }
 
-func calculateBlockIO(blkio BlkioStats) (blkRead uint64, blkWrite uint64) {
+func calculateBlockIO(blkio blkioStats) (blkRead uint64, blkWrite uint64) {
 	for _, bioEntry := range blkio.IoServiceBytesRecursive {
 		switch strings.ToLower(bioEntry.Op) {
 		case "read":
@@ -121,7 +121,7 @@ func calculateBlockIO(blkio BlkioStats) (blkRead uint64, blkWrite uint64) {
 	return
 }
 
-func calculateNetwork(network map[string]NetworkStats) (float64, float64) {
+func calculateNetwork(network map[string]networkStats) (float64, float64) {
 	var rx, tx float64
 
 	for _, v := range network {
@@ -157,7 +157,7 @@ func formatSince(t time.Time) string {
 
 func getContainerInfo(containerName, displayName string) string {
 	var (
-		statData  StatsJSON
+		statData  statsJSON
 		container containerStart
 
 		cpuPercent        = 0.0
@@ -203,7 +203,7 @@ func getContainerInfo(containerName, displayName string) string {
 		bytefmt.ByteSize(blkRead), bytefmt.ByteSize(blkWrite))
 }
 
-func getRuntime(containerName, displayName, parseMode string) string {
+func GetRuntime(containerName, displayName, parseMode string) string {
 	//container_name: str, display_name: str = "This bot", parse_mode: str = "markdown"
 
 	info := getContainerInfo(containerName, displayName)
