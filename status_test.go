@@ -12,14 +12,14 @@ import "github.com/stretchr/testify/assert"
 func TestGetRuntime(t *testing.T) {
 	var result string
 
-	result = getRuntime("laughing_feistel", "display", "markdown")
+	result = GetRuntime("laughing_feistel", "display", "markdown")
 	assert.Contains(t, result, "display")
 	assert.Contains(t, result, "`")
 
-	result = getRuntime("laughing_feistel", "hello_world", "html")
+	result = GetRuntime("laughing_feistel", "hello_world", "html")
 	assert.Contains(t, result, "hello_world")
 	assert.Contains(t, result, "<pre>")
 
-	result = getRuntime("no", "hello_world", "html")
+	result = GetRuntime("no", "hello_world", "html")
 	assert.Contains(t, result, "Runtime information")
 }
