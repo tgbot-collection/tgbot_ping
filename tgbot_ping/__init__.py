@@ -13,10 +13,12 @@ import traceback
 import requests
 
 
-def get_runtime(container_name: str, display_name: str = "This bot", parse_mode: str = "markdown") -> str:
+def get_runtime(container_name: "str", display_name: "str" = "This bot", parse_mode: "str" = "markdown",
+                raw=False):
     try:
-        info = __get_container_info(container_name, display_name)
+        info, raw_data = __get_container_info(container_name, display_name)
     except Exception:
+        raw_data = ""
         info = f"Runtime information is not available outside of docker container.\n😊{traceback.format_exc()}😭"
 
     if parse_mode == "markdown":
@@ -25,11 +27,12 @@ def get_runtime(container_name: str, display_name: str = "This bot", parse_mode:
         info = info.replace("😊", "<pre>").replace("😭", "</pre>")
     else:
         raise ValueError(f"mode {parse_mode} is invalid.")
-
+    if raw:
+        return info, raw_data
     return info
 
 
-def __get_container_info(container_name: str, display_name) -> str:
+def __get_container_info(container_name: str, display_name):
     # http://socat:2375/containers/untitled_socat_1/json
     # http://socat:2375/containers/osstpmgt_websvc_1/stats?stream=0
     msg_template = "{bot} has been running for 😊{run}😭 from " \
@@ -63,7 +66,7 @@ def __get_container_info(container_name: str, display_name) -> str:
     msg = msg_template.format(bot=display_name, run=str(run).split(".")[0],
                               started_at=localtime, cpu=cpu, ram=ram,
                               rx=rx, tx=tx, R=io_read, W=io_write)
-    return msg
+    return msg, stats
 
 
 def __calculate_cpu_percent(d: dict) -> str:
@@ -96,3 +99,8 @@ def __human_bytes(byte: int) -> str:
         return '{0:.2f}GB'.format(byte / gb)
     elif tb <= byte:
         return '{0:.2f}TB'.format(byte / tb)
+
+
+if __name__ == '__main__':
+    x = get_runtime("cranky_hypatia")
+    print(x)
