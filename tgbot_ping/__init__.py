@@ -71,7 +71,7 @@ def __get_container_info(container_name: str, display_name):
 
 def __calculate_cpu_percent(d: dict) -> str:
     # https://github.com/moby/moby/blob/eb131c5383db8cac633919f82abad86c99bffbe5/cli/command/container/stats_helpers.go#L175-L188
-    cpu_count = len(d["cpu_stats"]["cpu_usage"]["percpu_usage"])
+    cpu_count = len(d["cpu_stats"]["cpu_usage"].get("percpu_usage", "a"))
     cpu_percent = 0.0
     cpu_delta = float(d["cpu_stats"]["cpu_usage"]["total_usage"]) - \
                 float(d["precpu_stats"]["cpu_usage"]["total_usage"])
