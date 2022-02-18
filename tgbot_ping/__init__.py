@@ -71,12 +71,10 @@ def __get_container_info(container_name: str, display_name):
 
 def __calculate_cpu_percent(d: dict) -> str:
     # https://github.com/moby/moby/blob/eb131c5383db8cac633919f82abad86c99bffbe5/cli/command/container/stats_helpers.go#L175-L188
-    cpu_count = len(d["cpu_stats"]["cpu_usage"].get("percpu_usage", "a"))
+    cpu_count = len(d["cpu_stats"]["cpu_usage"].get("percpu_usage", 1))
     cpu_percent = 0.0
-    cpu_delta = float(d["cpu_stats"]["cpu_usage"]["total_usage"]) - \
-                float(d["precpu_stats"]["cpu_usage"]["total_usage"])
-    system_delta = float(d["cpu_stats"]["system_cpu_usage"]) - \
-                   float(d["precpu_stats"]["system_cpu_usage"])
+    cpu_delta = float(d["cpu_stats"]["cpu_usage"]["total_usage"] - d["precpu_stats"]["cpu_usage"]["total_usage"])
+    system_delta = float(d["cpu_stats"].get("system_cpu_usage", 0) - d["precpu_stats"].get("system_cpu_usage", 0))
     if system_delta > 0.0:
         cpu_percent = cpu_delta / system_delta * 100.0 * cpu_count
     return "%.2f%%" % cpu_percent
@@ -102,5 +100,5 @@ def __human_bytes(byte: int) -> str:
 
 
 if __name__ == '__main__':
-    x = get_runtime("cranky_hypatia")
+    x = get_runtime("vigilant_antonelli")
     print(x)
