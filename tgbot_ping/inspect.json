@@ -1,0 +1,261 @@
+{
+  "Id": "706bbf8bae3f02a9039effcb8154e14986e6794ccbf772e4a79bd1207028267f",
+  "Created": "2023-01-12T11:32:52.549417694Z",
+  "Path": "/usr/local/bin/supervisord",
+  "Args": [
+    "-c",
+    "/ytdlbot/conf/supervisor_main.conf"
+  ],
+  "State": {
+    "Status": "running",
+    "Running": true,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 1163540,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2023-01-28T13:33:13.325425569Z",
+    "FinishedAt": "2023-01-28T13:33:06.208736803Z"
+  },
+  "Image": "sha256:9ba858bda0fdc60a5965c9441df7c044d0051e0d1e00382af51c752bbce6eea4",
+  "ResolvConfPath": "/var/lib/docker/containers/706bbf8bae3f02a9039effcb8154e14986e6794ccbf772e4a79bd1207028267f/resolv.conf",
+  "HostnamePath": "/var/lib/docker/containers/706bbf8bae3f02a9039effcb8154e14986e6794ccbf772e4a79bd1207028267f/hostname",
+  "HostsPath": "/var/lib/docker/containers/706bbf8bae3f02a9039effcb8154e14986e6794ccbf772e4a79bd1207028267f/hosts",
+  "LogPath": "",
+  "Name": "/ytdlbot_ytdl_1",
+  "RestartCount": 0,
+  "Driver": "overlay2",
+  "Platform": "linux",
+  "MountLabel": "",
+  "ProcessLabel": "",
+  "AppArmorProfile": "docker-default",
+  "ExecIDs": [
+    "654e7ca5d5827900cdb5a209de632c7cf24f555a28300a55038fc733fed73da4"
+  ],
+  "HostConfig": {
+    "Binds": [
+      "/home/ytdlbot/data/vnstat:/var/lib/vnstat:rw",
+      "/home/ytdlbot/data/instagram.com_cookies.txt:/ytdlbot/ytdlbot/instagram.com_cookies.txt:rw"
+    ],
+    "ContainerIDFile": "",
+    "LogConfig": {
+      "Type": "none",
+      "Config": {}
+    },
+    "NetworkMode": "ytdlbot_default",
+    "PortBindings": {},
+    "RestartPolicy": {
+      "Name": "always",
+      "MaximumRetryCount": 0
+    },
+    "AutoRemove": false,
+    "VolumeDriver": "",
+    "VolumesFrom": [],
+    "CapAdd": null,
+    "CapDrop": null,
+    "CgroupnsMode": "private",
+    "Dns": null,
+    "DnsOptions": null,
+    "DnsSearch": null,
+    "ExtraHosts": null,
+    "GroupAdd": null,
+    "IpcMode": "private",
+    "Cgroup": "",
+    "Links": null,
+    "OomScoreAdj": 0,
+    "PidMode": "",
+    "Privileged": false,
+    "PublishAllPorts": false,
+    "ReadonlyRootfs": false,
+    "SecurityOpt": null,
+    "UTSMode": "",
+    "UsernsMode": "",
+    "ShmSize": 67108864,
+    "Runtime": "runc",
+    "ConsoleSize": [
+      0,
+      0
+    ],
+    "Isolation": "",
+    "CpuShares": 0,
+    "Memory": 0,
+    "NanoCpus": 0,
+    "CgroupParent": "",
+    "BlkioWeight": 0,
+    "BlkioWeightDevice": null,
+    "BlkioDeviceReadBps": null,
+    "BlkioDeviceWriteBps": null,
+    "BlkioDeviceReadIOps": null,
+    "BlkioDeviceWriteIOps": null,
+    "CpuPeriod": 0,
+    "CpuQuota": 0,
+    "CpuRealtimePeriod": 0,
+    "CpuRealtimeRuntime": 0,
+    "CpusetCpus": "",
+    "CpusetMems": "",
+    "Devices": null,
+    "DeviceCgroupRules": null,
+    "DeviceRequests": null,
+    "KernelMemory": 0,
+    "KernelMemoryTCP": 0,
+    "MemoryReservation": 0,
+    "MemorySwap": 0,
+    "MemorySwappiness": null,
+    "OomKillDisable": null,
+    "PidsLimit": null,
+    "Ulimits": null,
+    "CpuCount": 0,
+    "CpuPercent": 0,
+    "IOMaximumIOps": 0,
+    "IOMaximumBandwidth": 0,
+    "MaskedPaths": [
+      "/proc/asound",
+      "/proc/acpi",
+      "/proc/kcore",
+      "/proc/keys",
+      "/proc/latency_stats",
+      "/proc/timer_list",
+      "/proc/timer_stats",
+      "/proc/sched_debug",
+      "/proc/scsi",
+      "/sys/firmware"
+    ],
+    "ReadonlyPaths": [
+      "/proc/bus",
+      "/proc/fs",
+      "/proc/irq",
+      "/proc/sys",
+      "/proc/sysrq-trigger"
+    ]
+  },
+  "GraphDriver": {
+    "Data": {
+      "LowerDir": "/var/lib/docker/overlay2/84fc58366029ef70c0a6a24886d86e19b6c84b716de75346a82a0fe0e742636a-init/diff:/var/lib/docker/overlay2/448191a87cf140efc389e5b6708dd1d15175aa40c805461f693e25e0a5170d32/diff:/var/lib/docker/overlay2/2026d8c4bc737c48d530e45e364849780edf9109e46d18a7c881f63c5e444c11/diff:/var/lib/docker/overlay2/61e8993803e248c928566def13debe7702bbe1f5da0c0288facf0ce2351126c1/diff:/var/lib/docker/overlay2/a2c64bd0534b54c1f17e13c63a84e449fbff6f6bf4022897f98659e23377f33b/diff:/var/lib/docker/overlay2/51cb8463e8875aef68905967d045ddb9a325573fe54ea1baa404dd503e99df95/diff:/var/lib/docker/overlay2/06d483a5ff16b7810372d99048ffa549c2c4ee98eeba7066f72ecba8485643d6/diff:/var/lib/docker/overlay2/342d4c2fa7a047c8ebe7c53b7dcafb0821e6191bdaa975659f0e302c7fafb784/diff:/var/lib/docker/overlay2/7456fbded80b79f5a5347a349688c31db4df9837e4b92862e66885aa0ad65ffc/diff:/var/lib/docker/overlay2/7806eea9d005f69e062fa6b2f291606e53888f81e3f3015fdd963e3acce84673/diff:/var/lib/docker/overlay2/d269b95070d79030a86670010d1e7bae505c116a098781689402e2cf6368990c/diff:/var/lib/docker/overlay2/83230d345abcf5271b6e3bd745f564d2f2ee1b0eb36a1a6c8fd48245831bf7ba/diff:/var/lib/docker/overlay2/d37aa4f73e9dc81557deb26db9f2a1d53a74d85ded16f892f8a734bf918f3d3d/diff",
+      "MergedDir": "/var/lib/docker/overlay2/84fc58366029ef70c0a6a24886d86e19b6c84b716de75346a82a0fe0e742636a/merged",
+      "UpperDir": "/var/lib/docker/overlay2/84fc58366029ef70c0a6a24886d86e19b6c84b716de75346a82a0fe0e742636a/diff",
+      "WorkDir": "/var/lib/docker/overlay2/84fc58366029ef70c0a6a24886d86e19b6c84b716de75346a82a0fe0e742636a/work"
+    },
+    "Name": "overlay2"
+  },
+  "Mounts": [
+    {
+      "Type": "bind",
+      "Source": "/home/ytdlbot/data/vnstat",
+      "Destination": "/var/lib/vnstat",
+      "Mode": "rw",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/ytdlbot/data/instagram.com_cookies.txt",
+      "Destination": "/ytdlbot/ytdlbot/instagram.com_cookies.txt",
+      "Mode": "rw",
+      "RW": true,
+      "Propagation": "rprivate"
+    }
+  ],
+  "Config": {
+    "Hostname": "706bbf8bae3f",
+    "Domainname": "",
+    "User": "",
+    "AttachStdin": false,
+    "AttachStdout": false,
+    "AttachStderr": false,
+    "Tty": false,
+    "OpenStdin": false,
+    "StdinOnce": false,
+    "Env": [
+      "TOKEN=123",
+      "APP_ID=123",
+      "APP_HASH=123",
+      "COFFEE_TOKEN=123",
+      "AFD_TOKEN=123",
+      "AFD_USER_ID=123",
+      "VIP=True",
+      "ENABLE_CELERY=True",
+      "MYSQL_HOST=172.17.0.1",
+      "REDIS=redis",
+      "FLOWER_PASSWORD=123",
+      "INFLUX_HOST=192.168.6.2",
+      "GOOGLE_API_KEY=Aw8c",
+      "CUSTOM_TEXT=#StandWithUkraine",
+      "RATE=300",
+      "PROVIDER_TOKEN=123",
+      "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "LANG=C.UTF-8",
+      "GPG_KEY=123",
+      "PYTHON_VERSION=3.10.9",
+      "PYTHON_PIP_VERSION=22.3.1",
+      "PYTHON_SETUPTOOLS_VERSION=65.5.1",
+      "PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/66030fa03382b4914d4c4d0896961a0bdeeeb274/public/get-pip.py",
+      "PYTHON_GET_PIP_SHA256=1e501cf004eac1b7eb1f97266d28f995ae835d30250bec7f8850562703067dc6",
+      "TZ=Europe/Stockholm"
+    ],
+    "Cmd": [
+      "/usr/local/bin/supervisord",
+      "-c",
+      "/ytdlbot/conf/supervisor_main.conf"
+    ],
+    "Image": "bennythink/ytdlbot",
+    "Volumes": {
+      "/var/lib/vnstat": {},
+      "/ytdlbot/ytdlbot/instagram.com_cookies.txt": {}
+    },
+    "WorkingDir": "/ytdlbot/ytdlbot",
+    "Entrypoint": null,
+    "OnBuild": null,
+    "Labels": {
+      "com.centurylinklabs.watchtower.enable": "true",
+      "com.docker.compose.config-hash": "d930d77756047d739d13e409b4bd3ccbf47473959f1e45418b88ba31dcccc632",
+      "com.docker.compose.container-number": "1",
+      "com.docker.compose.oneoff": "False",
+      "com.docker.compose.project": "ytdlbot",
+      "com.docker.compose.project.config_files": "docker-compose.yml",
+      "com.docker.compose.project.working_dir": "/home/ytdlbot",
+      "com.docker.compose.service": "ytdl",
+      "com.docker.compose.version": "1.29.2"
+    }
+  },
+  "NetworkSettings": {
+    "Bridge": "",
+    "SandboxID": "8e4a29fc2dafdbbca6363ed069973203c79fb452f53bd421dd9c7630c00cff79",
+    "HairpinMode": false,
+    "LinkLocalIPv6Address": "",
+    "LinkLocalIPv6PrefixLen": 0,
+    "Ports": {},
+    "SandboxKey": "/var/run/docker/netns/8e4a29fc2daf",
+    "SecondaryIPAddresses": null,
+    "SecondaryIPv6Addresses": null,
+    "EndpointID": "",
+    "Gateway": "",
+    "GlobalIPv6Address": "",
+    "GlobalIPv6PrefixLen": 0,
+    "IPAddress": "",
+    "IPPrefixLen": 0,
+    "IPv6Gateway": "",
+    "MacAddress": "",
+    "Networks": {
+      "ytdlbot_default": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": [
+          "706bbf8bae3f",
+          "ytdl"
+        ],
+        "NetworkID": "e381d1a243a392773fe8409826ad8de04afb9cfa7f6772e88b5bb94359452b69",
+        "EndpointID": "07c30db7151e8d69f05f6c1bdeae1e6c884bfff4bae2450fe91ee3b42bd0ea5e",
+        "Gateway": "172.23.0.1",
+        "IPAddress": "172.23.0.3",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "MacAddress": "02:42:ac:17:00:03",
+        "DriverOpts": null
+      }
+    }
+  }
+}

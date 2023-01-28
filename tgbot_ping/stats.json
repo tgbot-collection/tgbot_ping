@@ -1,0 +1,112 @@
+{
+  "read": "2023-01-28T13:34:43.680009644Z",
+  "preread": "2023-01-28T13:34:42.677419138Z",
+  "pids_stats": {
+    "current": 13,
+    "limit": 2237
+  },
+  "blkio_stats": {
+    "io_service_bytes_recursive": [
+      {
+        "major": 252,
+        "minor": 0,
+        "op": "read",
+        "value": 35663872
+      },
+      {
+        "major": 252,
+        "minor": 0,
+        "op": "write",
+        "value": 4591616
+      }
+    ],
+    "io_serviced_recursive": null,
+    "io_queue_recursive": null,
+    "io_service_time_recursive": null,
+    "io_wait_time_recursive": null,
+    "io_merged_recursive": null,
+    "io_time_recursive": null,
+    "sectors_recursive": null
+  },
+  "num_procs": 0,
+  "storage_stats": {},
+  "cpu_stats": {
+    "cpu_usage": {
+      "total_usage": 4776564000,
+      "usage_in_kernelmode": 924498000,
+      "usage_in_usermode": 3852066000
+    },
+    "system_cpu_usage": 1376361680000000,
+    "online_cpus": 1,
+    "throttling_data": {
+      "periods": 0,
+      "throttled_periods": 0,
+      "throttled_time": 0
+    }
+  },
+  "precpu_stats": {
+    "cpu_usage": {
+      "total_usage": 4776252000,
+      "usage_in_kernelmode": 924437000,
+      "usage_in_usermode": 3851814000
+    },
+    "system_cpu_usage": 1376360670000000,
+    "online_cpus": 1,
+    "throttling_data": {
+      "periods": 0,
+      "throttled_periods": 0,
+      "throttled_time": 0
+    }
+  },
+  "memory_stats": {
+    "usage": 168894464,
+    "stats": {
+      "active_anon": 24576,
+      "active_file": 1208320,
+      "anon": 119996416,
+      "anon_thp": 0,
+      "file": 38862848,
+      "file_dirty": 151552,
+      "file_mapped": 1384448,
+      "file_writeback": 0,
+      "inactive_anon": 118890496,
+      "inactive_file": 38735872,
+      "kernel_stack": 196608,
+      "pgactivate": 154,
+      "pgdeactivate": 0,
+      "pgfault": 209394,
+      "pglazyfree": 1320,
+      "pglazyfreed": 0,
+      "pgmajfault": 18,
+      "pgrefill": 0,
+      "pgscan": 0,
+      "pgsteal": 0,
+      "shmem": 0,
+      "slab": 9142728,
+      "slab_reclaimable": 8623768,
+      "slab_unreclaimable": 518960,
+      "sock": 4096,
+      "thp_collapse_alloc": 0,
+      "thp_fault_alloc": 0,
+      "unevictable": 0,
+      "workingset_activate": 0,
+      "workingset_nodereclaim": 0,
+      "workingset_refault": 0
+    },
+    "limit": 2071941120
+  },
+  "name": "/ytdlbot_ytdl_1",
+  "id": "706bbf8bae3f02a9039effcb8154e14986e6794ccbf772e4a79bd1207028267f",
+  "networks": {
+    "eth0": {
+      "rx_bytes": 3283236,
+      "rx_packets": 1870,
+      "rx_errors": 0,
+      "rx_dropped": 0,
+      "tx_bytes": 613489,
+      "tx_packets": 1824,
+      "tx_errors": 0,
+      "tx_dropped": 0
+    }
+  }
+}

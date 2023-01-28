@@ -8,6 +8,8 @@
 __author__ = "Benny <benny.think@gmail.com>"
 
 import datetime
+import json
+import os
 import traceback
 
 import requests
@@ -42,8 +44,14 @@ def __get_container_info(container_name: str, display_name):
                    "Network RX/TX: 😊{rx}/{tx}😭\n" \
                    "IO R/W: 😊{R}/{W}😭\n"
 
-    stats = requests.get(f"http://socat:2375/containers/{container_name}/stats?stream=0").json()
-    inspect = requests.get(f"http://socat:2375/containers/{container_name}/json").json()
+    if os.getenv("PYTHON_ENV") == "dev":
+        with open("stats.json", "r") as f:
+            stats = json.load(f)
+        with open("inspect.json", "r") as f:
+            inspect = json.load(f)
+    else:
+        stats = requests.get(f"http://socat:2375/containers/{container_name}/stats?stream=0").json()
+        inspect = requests.get(f"http://socat:2375/containers/{container_name}/json").json()
 
     start_time = inspect["State"]["StartedAt"][0:26]
     utc_time = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%f")
@@ -71,7 +79,7 @@ def __get_container_info(container_name: str, display_name):
 
 def __calculate_cpu_percent(d: dict) -> str:
     # https://github.com/moby/moby/blob/eb131c5383db8cac633919f82abad86c99bffbe5/cli/command/container/stats_helpers.go#L175-L188
-    cpu_count = len(d["cpu_stats"]["cpu_usage"].get("percpu_usage", 1))
+    cpu_count = d["cpu_stats"].get("online_cpus", 1)
     cpu_percent = 0.0
     cpu_delta = float(d["cpu_stats"]["cpu_usage"]["total_usage"] - d["precpu_stats"]["cpu_usage"]["total_usage"])
     system_delta = float(d["cpu_stats"].get("system_cpu_usage", 0) - d["precpu_stats"].get("system_cpu_usage", 0))
