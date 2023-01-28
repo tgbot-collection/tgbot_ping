@@ -10,6 +10,7 @@ __author__ = "Benny <benny.think@gmail.com>"
 import datetime
 import json
 import os
+import time
 import traceback
 
 import requests
@@ -55,7 +56,7 @@ def __get_container_info(container_name: str, display_name):
 
     start_time = inspect["State"]["StartedAt"][0:26]
     utc_time = datetime.datetime.strptime(start_time, "%Y-%m-%dT%H:%M:%S.%f")
-    delta = datetime.timedelta(hours=8)
+    delta = datetime.timedelta(hours=time.timezone // 3600)
     run = datetime.datetime.now() - utc_time - delta
     localtime: str = (utc_time + delta).astimezone().strftime("%Y-%m-%d %H:%M:%S %z")
 
