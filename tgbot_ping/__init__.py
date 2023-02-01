@@ -9,7 +9,6 @@ __author__ = "Benny <benny.think@gmail.com>"
 
 import datetime
 import json
-import os
 import time
 import traceback
 
@@ -17,9 +16,9 @@ import requests
 
 
 def get_runtime(container_name: "str", display_name: "str" = "This bot", parse_mode: "str" = "markdown",
-                raw=False):
+                raw=False, test_data=None):
     try:
-        info, raw_data = __get_container_info(container_name, display_name)
+        info, raw_data = __get_container_info(container_name, display_name, test_data)
     except Exception:
         raw_data = ""
         info = f"Runtime information is not available outside of docker container.\n😊{traceback.format_exc()}😭"
@@ -35,7 +34,7 @@ def get_runtime(container_name: "str", display_name: "str" = "This bot", parse_m
     return info
 
 
-def __get_container_info(container_name: str, display_name):
+def __get_container_info(container_name: str, display_name, test_data):
     # http://socat:2375/containers/untitled_socat_1/json
     # http://socat:2375/containers/osstpmgt_websvc_1/stats?stream=0
     msg_template = "{bot} has been running for 😊{run}😭 from " \
@@ -45,10 +44,11 @@ def __get_container_info(container_name: str, display_name):
                    "Network RX/TX: 😊{rx}/{tx}😭\n" \
                    "IO R/W: 😊{R}/{W}😭\n"
 
-    if os.getenv("PYTHON_ENV") == "dev":
-        with open("stats.json", "r") as f:
+    if test_data:
+        # {"stats": "path/to/stats.json", "inspect": "path/to/inspect.json
+        with open(test_data["stats"], "r") as f:
             stats = json.load(f)
-        with open("inspect.json", "r") as f:
+        with open(test_data["inspect"], "r") as f:
             inspect = json.load(f)
     else:
         stats = requests.get(f"http://socat:2375/containers/{container_name}/stats?stream=0").json()
